@@ -1,0 +1,22 @@
+### Create User
+POST http://localhost:8000/user-api/users
+Content-Type: application/json
+
+{
+    "name":"Sample User 5",
+    "email":"usersample5@mail.com",
+    "dateOfBirth":"2002-1-23",
+    "mobileNumber":696698697
+}
+
+### Read all Users
+GET http://localhost:8000/user-api/users
+
+### Read a User by ID
+GET http://localhost:8000/user-api/users/69b063243260970d4279b5d2
+
+### Delete a User by ID
+DELETE http://localhost:8000/user-api/users/69b063033260970d4279b5cf
+
+### Activate User
+PATCH http://localhost:8000/user-api/users/69b063243260970d4279b5d2
