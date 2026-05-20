@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import axios from "axios";
 
+const API_BASE_URL = "https://user-management-mini-app.onrender.com/user-api";
+
 function AddUser() {
   const {
     register,
@@ -22,7 +24,7 @@ function AddUser() {
     // make HTTP POST req to create new user
     try {
       const res = await axios.post(
-        "https://user-management-mini-app-miqu-qbidba9ph-23eg105d62-uis-projects.vercel.app/user-api/users",
+        `${API_BASE_URL}/users`,
         newUser,
         {
           withCredentials: true,
@@ -53,9 +55,8 @@ function AddUser() {
   }
 
   return (
-    <div className="text-center">
+    <div className="text-center bg-lime-200 p-10 rounded-lg shadow-2xl">
       <h1 className="text-5xl text-gray-600">Add New User</h1>
-      {/* Create user form */}
       <form onSubmit={handleSubmit(onUserCreate)} className="max-w-96 mx-auto mt-10">
         <input type="text" {...register("name")} className="mb-5 border w-full text-2xl" placeholder="Name" />
         <input type="email" {...register("email")} className="mb-5 border w-full text-2xl" placeholder="Email" />

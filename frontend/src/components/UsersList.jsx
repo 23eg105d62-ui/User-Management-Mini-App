@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 
-const API_BASE_URL = "https://user-management-mini-app-miqu-qbidba9ph-23eg105d62-uis-projects.vercel.app/user-api";
+const API_BASE_URL = "https://user-management-mini-app.onrender.com/user-api";
 
 function UsersList() {
   let [users, setUsers] = useState([]);
