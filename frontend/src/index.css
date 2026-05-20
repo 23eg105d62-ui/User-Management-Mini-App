@@ -1,1 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --color-obsidian: #190019;
+  --color-midnight: #2B124C;
+  --color-plum: #522B5B;
+  --color-mauve: #854F6C;
+  --color-peach: #DFB6B2;
+  --color-cream: #FBE4D8;
+
+  --font-sans: "Outfit", "Inter", system-ui, sans-serif;
+  --font-serif: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+body {
+  background-color: #190019;
+  color: #FBE4D8;
+  font-family: "Outfit", "Inter", system-ui, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism utility classes helper */
+.glass-panel {
+  background: rgba(82, 43, 91, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(133, 79, 108, 0.2);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(82, 43, 91, 0.2);
+  border-color: rgba(223, 182, 178, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(25, 0, 25, 0.3);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #190019;
+}
+::-webkit-scrollbar-thumb {
+  background: #522B5B;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #854F6C;
+}
+
+/* Keyframe animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
