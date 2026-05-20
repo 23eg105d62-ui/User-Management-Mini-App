@@ -12,14 +12,15 @@ const app = exp();
 
 const FRONTEND_URL = process.env.FRONTEND_URL || "https://user-management-mini-app-cm7l.vercel.app";
 
-// add cors
+// add cors and handle preflight via middleware
 app.use(
   cors({
     origin: FRONTEND_URL,
     credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.options("*", cors({ origin: FRONTEND_URL, credentials: true }));
 
 // Add body parser middleware
 app.use(exp.json());
