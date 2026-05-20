@@ -11,7 +11,7 @@ config();
 const app = exp();
 //add cors
 app.use(cors({
-  origin:['http://localhost:5173']
+  origin:['https://user-management-mini-app-cm7l.vercel.app/']
 }))
 // Add body parser middleware
 app.use(exp.json());
