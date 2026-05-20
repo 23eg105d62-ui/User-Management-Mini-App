@@ -10,9 +10,13 @@ config();
 // Create HTTP Server
 const app = exp();
 //add cors
-app.use(cors({
-  origin:['https://user-management-mini-app-cm7l.vercel.app/']
-}))
+app.use(
+  cors(
+    {
+  origin:['https://user-management-mini-app-cm7l.vercel.app/'],
+  credentials: true,
+  }
+))
 // Add body parser middleware
 app.use(exp.json());
 // Forward req to UserAPI if path starts with /user-api

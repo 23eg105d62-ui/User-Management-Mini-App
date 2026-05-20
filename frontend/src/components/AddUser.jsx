@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 function AddUser() {
   const {
@@ -20,23 +21,23 @@ function AddUser() {
     setLoading(true);
     // make HTTP POST req to create new user
     try {
-      let res = await fetch("http://localhost:4000/user-api/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      });
+      const res = await axios.post(
+        "https://user-management-mini-app-miqu-qbidba9ph-23eg105d62-uis-projects.vercel.app/user-api/users",
+        newUser,
+        {
+          withCredentials: true,
+        }
+      );
 
       if (res.status === 201) {
-        //user created it shd navigate to users list
+        // user created it should navigate to users list
         navigate("/users-list");
       } else {
-        console.log(res)
+        console.log(res);
         throw new Error("error occurred");
       }
     } catch (err) {
-      console.log(err)
+      console.log(err);
       setError(err);
     } finally {
       setLoading(false);
