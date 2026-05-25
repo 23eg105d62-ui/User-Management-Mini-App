@@ -10,12 +10,27 @@ config();
 // Create HTTP Server
 const app = exp();
 
-const FRONTEND_URL = process.env.FRONTEND_URL || "https://user-management-mini-app-cm7l.vercel.app";
+// Allow multiple Vercel preview domains to talk to this API.
+// If FRONTEND_URL is set, it can be a comma-separated list.
+const FRONTEND_URLS = (process.env.FRONTEND_URL || "https://user-management-mini-app-cm7l.vercel.app")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
 
 // add cors and handle preflight via middleware
 app.use(
   cors({
-    origin: FRONTEND_URL,
+    origin: (origin, callback) => {
+      // Allow non-browser requests (no Origin header)
+      if (!origin) return callback(null, true);
+
+      if (FRONTEND_URLS.includes(origin)) {
+        return callback(null, origin);
+      }
+
+      // Block unknown origins
+      return callback(new Error(`CORS origin not allowed: ${origin}`));
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
