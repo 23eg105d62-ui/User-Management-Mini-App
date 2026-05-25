@@ -24,8 +24,19 @@ app.use(
       // Allow non-browser requests (no Origin header)
       if (!origin) return callback(null, true);
 
+      // Check exact matches
       if (FRONTEND_URLS.includes(origin)) {
-        return callback(null, origin);
+        return callback(null, true);
+      }
+
+      // Check Vercel preview/deployment domains
+      if (/^https:\/\/user-management-mini-app.*\.vercel\.app$/.test(origin)) {
+        return callback(null, true);
+      }
+
+      // Check localhost for local development
+      if (/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+        return callback(null, true);
       }
 
       // Block unknown origins
